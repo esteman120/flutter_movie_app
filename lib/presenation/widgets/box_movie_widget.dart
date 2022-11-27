@@ -31,7 +31,7 @@ class BoxMovieWidget extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(left: 30),
+        padding: const EdgeInsets.only(left: 20),
         itemCount: movies.length,
         itemBuilder: (context, index) {
           final movie = movies[index];

@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.zoom,
       theme: ThemeData(
         brightness: Brightness.light,
       ),

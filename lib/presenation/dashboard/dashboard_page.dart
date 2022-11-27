@@ -137,7 +137,8 @@ y la lista de las peliculas recomendadas
 */
   Padding titleSectionMethod(String nameSection) {
     return Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 20),
+      // padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+      padding: const EdgeInsets.all(20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

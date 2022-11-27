@@ -36,20 +36,32 @@ class DetailMoviePage extends GetWidget<DetailMovieController> {
                 child: GetBuilder<DetailMovieController>(
                     id: 'updateMovie',
                     builder: (_) {
-                      return controller.hasInfoMovie == true
-                          ? Column(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: imagePanel(),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: informationPanel(),
-                                ),
-                              ],
-                            )
-                          : const SizedBox.shrink();
+                      return Column(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: imagePanel(),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: informationPanel(),
+                          ),
+                        ],
+                      );
+                      // return controller.hasInfoMovie == true
+                      //     ? Column(
+                      //         children: [
+                      //           Expanded(
+                      //             flex: 1,
+                      //             child: imagePanel(),
+                      //           ),
+                      //           Expanded(
+                      //             flex: 2,
+                      //             child: informationPanel(),
+                      //           ),
+                      //         ],
+                      //       )
+                      //     : const SizedBox.shrink();
                     }),
               ),
               Obx(() {
@@ -78,157 +90,169 @@ class DetailMoviePage extends GetWidget<DetailMovieController> {
         left: responsive.wp(8),
         right: responsive.wp(8),
       ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: responsive.wp(70),
-                child: Text(controller.movie.title,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.colorTitles,
-                      fontSize: responsive.wp(6),
-                      fontWeight: FontWeight.w500,
-                    )),
-              ),
-              Icon(
-                Icons.live_tv,
-                color: Theme.of(Get.context!).colorScheme.colorSubTitles,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: responsive.hp(2),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: responsive.wp(40),
-                height: responsive.hp(5),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Theme.of(Get.context!).colorScheme.colorWatchNow,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Text(
-                  'WATCH NOW',
-                  style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.colorTitles,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              IconTheme(
-                data: const IconThemeData(
-                  color: Colors.amber,
-                ),
-                child: StarDisplay(value: controller.movie.voteAverage.ceil()),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: responsive.hp(3),
-          ),
-          SizedBox(
-            height: responsive.hp(15),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Text(
-                controller.movie.overview,
-                style: TextStyle(
-                  color: Theme.of(Get.context!).colorScheme.colorSubTitles,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: responsive.hp(2),
-          ),
-          actorsWidget(),
-          SizedBox(
-            height: responsive.hp(2),
-          ),
-          SizedBox(
-            height: responsive.hp(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: controller.hasInfoMovie == true
+          ? Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Studio',
-                      style: TextStyle(
-                        color: Theme.of(Get.context!).colorScheme.colorTitles,
-                      ),
-                    ),
                     SizedBox(
-                      width: responsive.wp(5),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Text(
-                          controller.studio,
+                      width: responsive.wp(70),
+                      child: Text(controller.movie.title,
                           style: TextStyle(
-                              color: Theme.of(Get.context!)
-                                  .colorScheme
-                                  .colorSubTitles),
-                        ),
-                      ),
+                            color:
+                                Theme.of(Get.context!).colorScheme.colorTitles,
+                            fontSize: responsive.wp(6),
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ),
+                    Icon(
+                      Icons.live_tv,
+                      color: Theme.of(Get.context!).colorScheme.colorSubTitles,
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: responsive.hp(2),
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Genre',
-                      style: TextStyle(
-                        color: Theme.of(Get.context!).colorScheme.colorTitles,
+                    Container(
+                      width: responsive.wp(40),
+                      height: responsive.hp(5),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Theme.of(Get.context!).colorScheme.colorWatchNow,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Text(
+                        'WATCH NOW',
+                        style: TextStyle(
+                            color:
+                                Theme.of(Get.context!).colorScheme.colorTitles,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
-                    SizedBox(
-                      width: responsive.wp(5),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Text(
-                          controller.genre,
-                          style: TextStyle(
-                              color: Theme.of(Get.context!)
-                                  .colorScheme
-                                  .colorSubTitles),
-                        ),
+                    IconTheme(
+                      data: const IconThemeData(
+                        color: Colors.amber,
                       ),
+                      child: StarDisplay(
+                          value: controller.movie.voteAverage.ceil()),
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Release',
+                SizedBox(
+                  height: responsive.hp(3),
+                ),
+                SizedBox(
+                  height: responsive.hp(15),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Text(
+                      controller.movie.overview,
                       style: TextStyle(
-                        color: Theme.of(Get.context!).colorScheme.colorTitles,
+                        color:
+                            Theme.of(Get.context!).colorScheme.colorSubTitles,
                       ),
                     ),
-                    SizedBox(
-                      width: responsive.wp(5),
-                    ),
-                    Text(
-                      controller.release,
-                      style: TextStyle(
-                          color: Theme.of(Get.context!)
-                              .colorScheme
-                              .colorSubTitles),
-                    ),
-                  ],
+                  ),
+                ),
+                SizedBox(
+                  height: responsive.hp(2),
+                ),
+                actorsWidget(),
+                SizedBox(
+                  height: responsive.hp(2),
+                ),
+                SizedBox(
+                  height: responsive.hp(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Studio',
+                            style: TextStyle(
+                              color: Theme.of(Get.context!)
+                                  .colorScheme
+                                  .colorTitles,
+                            ),
+                          ),
+                          SizedBox(
+                            width: responsive.wp(5),
+                          ),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Text(
+                                controller.studio,
+                                style: TextStyle(
+                                    color: Theme.of(Get.context!)
+                                        .colorScheme
+                                        .colorSubTitles),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Genre',
+                            style: TextStyle(
+                              color: Theme.of(Get.context!)
+                                  .colorScheme
+                                  .colorTitles,
+                            ),
+                          ),
+                          SizedBox(
+                            width: responsive.wp(5),
+                          ),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Text(
+                                controller.genre,
+                                style: TextStyle(
+                                    color: Theme.of(Get.context!)
+                                        .colorScheme
+                                        .colorSubTitles),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Release',
+                            style: TextStyle(
+                              color: Theme.of(Get.context!)
+                                  .colorScheme
+                                  .colorTitles,
+                            ),
+                          ),
+                          SizedBox(
+                            width: responsive.wp(5),
+                          ),
+                          Text(
+                            controller.release,
+                            style: TextStyle(
+                                color: Theme.of(Get.context!)
+                                    .colorScheme
+                                    .colorSubTitles),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            ),
-          ),
-        ],
-      ),
+            )
+          : const SizedBox.shrink(),
     );
   }
 
@@ -287,45 +311,47 @@ class DetailMoviePage extends GetWidget<DetailMovieController> {
 * @return: Retorna widget con la imagen principal de la pelicula
 */
   Widget imagePanel() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(Get.context!).colorScheme.colorPrimary,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-        image: DecorationImage(
-          image: NetworkImage(urlImage + controller.movie.posterPath),
-          fit: BoxFit.fill,
-        ),
-      ),
-      child: Container(
-        alignment: Alignment.topCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              onPressed: () {
-                controller.goToBack();
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: Theme.of(Get.context!).colorScheme.colorTitles,
-                size: responsive.wp(10),
+    return controller.hasInfoMovie == true
+        ? Container(
+            decoration: BoxDecoration(
+              color: Theme.of(Get.context!).colorScheme.colorPrimary,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              image: DecorationImage(
+                image: NetworkImage(urlImage + controller.movie.posterPath),
+                fit: BoxFit.fill,
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.favorite_border,
-                color: Theme.of(Get.context!).colorScheme.colorTitles,
-                size: responsive.wp(10),
+            child: Container(
+              alignment: Alignment.topCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      controller.goToBack();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(Get.context!).colorScheme.colorTitles,
+                      size: responsive.wp(10),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite_border,
+                      color: Theme.of(Get.context!).colorScheme.colorTitles,
+                      size: responsive.wp(10),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : const SizedBox.shrink();
   }
 
   Future<bool> _onWillPop() async {
